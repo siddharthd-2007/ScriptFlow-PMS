@@ -1,4 +1,16 @@
 from fastapi import FastAPI
+from app.api.auth import router as auth_router
+
+from fastapi.middleware.cors import CORSMiddleware
+from app.api.employee import router as employee_router
+
+from app.api.client_api import router as client_router
+
+from app.api.project_api import router as project_router
+
+from app.api import task_api
+
+from app.api import calendar_api
 
 # Create the FastAPI application
 app = FastAPI(
@@ -7,6 +19,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(auth_router)
+app.include_router(employee_router)
+app.include_router(client_router)
 
 # Root endpoint
 @app.get("/")
@@ -52,3 +78,9 @@ def create_project():
         "status": "success",
         "message": "Project created successfully"
     }
+
+app.include_router(project_router)
+
+app.include_router(task_api.router)
+
+app.include_router(calendar_api.router)
