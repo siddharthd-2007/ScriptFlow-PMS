@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Shared Layout -->
+<link rel="stylesheet" href="../assets/css/layout.css">
+
+<link rel="stylesheet" href="../assets/css/components.css">
+
+<!-- Page CSS -->
+<link rel="stylesheet" href="../assets/css/dashboard.css">
+
+<body>
+
+    <div class="layout">
+ <!-- =================Sidebar=================== -->
+
+        <div id="sidebar"></div>
+
+        <!-- ===================================== -->
+        <!-- Main -->
+        <!-- ===================================== -->
+
+        <main class="main-content">
+
+            <!-- Header -->
+
+            <div id="topbar"></div>
+
+            <!-- START DASHBOARD CONTENT -->
+
+            <!-- ===================================== -->
+            <!-- KPI CARDS -->
+            <!-- ===================================== -->
+
+            <div class="container-fluid px-0">
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Total Projects</small>
+
+                                <h2 id="totalProjects">0</h2>
+
+                                <span class="growth positive">
+
+                                    <i class="bi bi-arrow-up-short"></i>
+
+                                    Live Data
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-primary-soft">
+
+                                <i class="bi bi-kanban-fill"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Active Projects</small>
+
+                                <h2 id="activeProjects">0</h2>
+
+                                <span class="growth positive">
+
+                                    <i class="bi bi-play-circle"></i>
+
+                                    Running
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-success-soft">
+
+                                <i class="bi bi-graph-up-arrow"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Total Clients</small>
+
+                                <h2 id="totalClients">0</h2>
+
+                                <span class="growth positive">
+
+                                    <i class="bi bi-buildings"></i>
+
+                                    Registered
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-warning-soft">
+
+                                <i class="bi bi-buildings-fill"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-md-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Employees</small>
+
+                                <h2 id="totalEmployees">0</h2>
+
+                                <span class="growth positive">
+
+                                    <i class="bi bi-people"></i>
+
+                                    Team
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-primary-soft">
+
+                                <i class="bi bi-people-fill"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row g-3 mb-4">
+
+                    <div class="col-lg-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Total Tasks</small>
+
+                                <h2 id="totalTasks">0</h2>
+
+                                <span class="growth positive">
+
+                                    <i class="bi bi-list-task"></i>
+
+                                    Across Projects
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-success-soft">
+
+                                <i class="bi bi-check2-square"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="overview-card">
+
+                            <div>
+
+                                <small>Delayed Projects</small>
+
+                                <h2 id="delayedProjects">0</h2>
+
+                                <span class="growth negative">
+
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+
+                                    Needs Attention
+
+                                </span>
+
+                            </div>
+
+                            <div class="overview-icon bg-danger-soft">
+
+                                <i class="bi bi-clock-history"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- ===================================== -->
+                <!-- MAIN DASHBOARD GRID -->
+                <!-- ===================================== -->
+
+                <div class="row g-4">
+
+                    <!-- ============================= -->
+                    <!-- LEFT COLUMN -->
+                    <!-- ============================= -->
+
+                    <div class="col-xl-8">
+
+                        <!-- Projects -->
+
+                        <div class="card dashboard-card mb-4">
+
+                            <div class="card-header dashboard-header">
+
+                                <div>
+
+                                    <h5 class="mb-1 fw-semibold">
+
+                                        Projects Requiring Attention
+
+                                    </h5>
+
+                                    <small class="text-muted">
+
+                                        Projects that need monitoring or immediate action
+
+                                    </small>
+
+                                </div>
+
+                                <a href="projects.html" class="btn btn-primary btn-sm">
+
+                                    <i class="bi bi-kanban me-1"></i>
+
+                                    View All
+
+                                </a>
+
+                            </div>
+
+                            <div class="table-responsive">
+
+                                <table class="table dashboard-table align-middle mb-0">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Project</th>
+
+                                            <th>Client</th>
+
+                                            <th>Manager</th>
+
+                                            <th>Status</th>
+
+                                            <th>Priority</th>
+
+                                            <th>Progress</th>
+
+                                            <th>Deadline</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="attentionProjectsTable">
+
+                                        <tr>
+
+                                            <td colspan="7" class="text-center py-5">
+
+                                                Loading...
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Recent Clients -->
+
+                        <div class="card dashboard-card">
+
+                            <div class="card-header dashboard-header">
+
+                                <div>
+
+                                    <h5 class="mb-1 fw-semibold">
+
+                                        Recently Added Clients
+
+                                    </h5>
+
+                                    <small class="text-muted">
+
+                                        Latest registered clients
+
+                                    </small>
+
+                                </div>
+
+                                <a href="clients.html" class="btn btn-outline-primary btn-sm">
+
+                                    View All
+
+                                </a>
+
+                            </div>
+
+                            <div class="table-responsive">
+
+                                <table class="table dashboard-table align-middle mb-0">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>Company</th>
+
+                                            <th>Industry</th>
+
+                                            <th>Projects</th>
+
+                                            <th>Status</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="recentClientsTable">
+
+                                        <tr>
+
+                                            <td colspan="4" class="text-center py-5">
+
+                                                Loading...
+
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ============================= -->
+                    <!-- RIGHT COLUMN -->
+                    <!-- ============================= -->
+
+                    <div class="col-xl-4">
+
+                        <!-- Upcoming Deadlines -->
+
+                        <div class="card dashboard-card mb-4">
+
+                            <div class="card-header dashboard-header">
+
+                                <div>
+
+                                    <h5 class="mb-1 fw-semibold">
+
+                                        Upcoming Deadlines
+
+                                    </h5>
+
+                                    <small class="text-muted">
+
+                                        Nearest project deadlines
+
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-calendar-event fs-4 text-primary"></i>
+
+                            </div>
+
+                            <div class="card-body" id="upcomingDeadlines">
+
+                                <div class="text-center py-5">
+
+                                    Loading...
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Employee Workload -->
+
+                        <div class="card dashboard-card">
+
+                            <div class="card-header dashboard-header">
+
+                                <div>
+
+                                    <h5 class="mb-1 fw-semibold">
+
+                                        Employee Workload
+
+                                    </h5>
+
+                                    <small class="text-muted">
+
+                                        Current task distribution
+
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-people-fill fs-4 text-primary"></i>
+
+                            </div>
+
+                            <div class="card-body" id="employeeWorkload">
+
+                                <div class="text-center py-5">
+
+                                    Loading...
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- END DASHBOARD CONTENT -->
+
+        </main>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- Scripts -->
+    <!-- ===================================== -->
+
+    <script src="../assets/js/api.js"></script>
+
+<script src="../assets/js/layout.js"></script>
+
+<script src="../assets/components/sidebar.js"></script>
+
+<script src="../assets/components/topbar.js"></script>
+
+<script src="../assets/js/dashboard.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

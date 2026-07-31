@@ -8,13 +8,23 @@ class TaskRepository:
 
     def __init__(self, db: Session):
         self.db = db
-
+        
     def get_all_tasks(self):
+            query = self.db.query(Task).filter(
+        Task.is_active == True
+    )
+        
+            return query.all()
+    
+    def get_tasks_by_module(self, module_id: int):
         return (
-            self.db.query(Task)
-            .filter(Task.is_active == True)
-            .all()
+        self.db.query(Task)
+        .filter(
+            Task.module_id == module_id,
+            Task.is_active == True
         )
+        .all()
+    )
 
     def get_task_by_id(self, task_id: int):
         return (

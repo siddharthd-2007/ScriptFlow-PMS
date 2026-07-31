@@ -24,11 +24,11 @@ class Task(Base):
 
     description = Column(Text, nullable=True)
 
-    project_id = Column(
-        Integer,
-        ForeignKey("projects.id"),
-        nullable=False
-    )
+    module_id = Column(
+    Integer,
+    ForeignKey("modules.id"),
+    nullable=False
+)
 
     assigned_to = Column(
     Integer,

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modules | ScriptFlow PMS</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside id="sidebar"></aside>
+
+        <div class="main-content">
+
+            <!-- Topbar -->
+            <header id="topbar"></header>
+
+            <main>
+
+                <!-- ================= Page Header ================= -->
+
+
+
+                <!-- ================= Statistics ================= -->
+
+                <div class="row g-4 mb-4">
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <small class="text-muted">
+                                    Total Modules
+                                </small>
+
+                                <h2 id="totalModules" class="fw-bold mt-2">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <small class="text-muted">
+                                    Completed
+                                </small>
+
+                                <h2 id="completedModules" class="fw-bold mt-2 text-success">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <small class="text-muted">
+                                    In Progress
+                                </small>
+
+                                <h2 id="progressModules" class="fw-bold mt-2 text-primary">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <small class="text-muted">
+                                    Delayed
+                                </small>
+
+                                <h2 id="delayedModules" class="fw-bold mt-2 text-danger">
+
+                                    0
+
+                                </h2>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Filters ================= -->
+
+                <div class="card mb-4">
+
+                    <div class="card-body">
+
+                        <div class="row g-3">
+
+                            <div class="col-lg-4">
+                                <input id="moduleSearch" class="form-control" placeholder="Search modules...">
+                            </div>
+
+                            <div class="col-lg-2">
+                                <select id="statusFilter" class="form-select">
+
+                                    <option value="">All Status</option>
+                                    <option>Planning</option>
+                                    <option>In Progress</option>
+                                    <option>Review</option>
+                                    <option>Completed</option>
+                                    <option>Blocked</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <select id="projectFilter" class="form-select">
+
+                                    <option value="">
+                                        All Projects
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <select id="priorityFilter" class="form-select">
+
+                                    <option value="">All Priority</option>
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option>High</option>
+                                    <option>Critical</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <button id="resetFilters" class="btn btn-outline-secondary w-100">
+
+                                    Reset
+
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= Module Table ================= -->
+
+                <div class="card">
+
+                    <div class="table-responsive">
+
+                        <table class="table align-middle mb-0">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th style="width:30%;">
+                                        Module
+                                    </th>
+
+                                    <th>
+                                        Project
+                                    </th>
+
+                                    <th>
+                                        Lead
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Priority
+                                    </th>
+
+                                    <th>Progress</th>
+
+                                    <th>
+                                        End Date
+                                    </th>
+
+                                    <th width="170">
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="modulesTableBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- Create Task Modal -->
+    <!-- ===================================================== -->
+
+    <!-- ===================================================== -->
+    <!-- Create / Edit Module Modal -->
+    <!-- ===================================================== -->
+
+    <div class="modal fade" id="moduleModal" tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="moduleModalTitle">
+
+                        Create New Module
+
+                    </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="moduleForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Module Name *
+                                </label>
+
+                                <input type="text" id="moduleName" class="form-control" required>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Description
+                                </label>
+
+                                <textarea id="moduleDescription" class="form-control" rows="3"></textarea>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Project *
+                                </label>
+
+                                <select id="moduleProject" class="form-select" required>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Module Lead
+                                </label>
+
+                                <select id="moduleLead" class="form-select">
+
+                                    <option value="">
+                                        Select Lead
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Priority
+                                </label>
+
+                                <select id="modulePriority" class="form-select">
+
+                                    <option>Low</option>
+                                    <option selected>Medium</option>
+                                    <option>High</option>
+                                    <option>Critical</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Status
+                                </label>
+
+                                <select id="moduleStatus" class="form-select">
+
+                                    <option>
+                                        Planning</option>
+                                    <option>In Progress</option>
+                                    <option>Review</option>
+                                    <option>Completed</option>
+                                    <option>Blocked</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Progress (%)
+                                </label>
+
+                                <input type="number" id="moduleProgress" class="form-control" value="0" min="0"
+                                    max="100">
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Start Date
+                                </label>
+
+                                <input type="date" id="moduleStartDate" class="form-control">
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    End Date
+                                </label>
+
+                                <input type="date" id="moduleEndDate" class="form-control">
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button id="saveModuleBtn" class="btn btn-primary">
+
+                        <i class="bi bi-check-lg me-2"></i>
+
+                        Create Module
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/components/sidebar.js"></script>
+    <script src="../assets/components/topbar.js"></script>
+    <script src="../assets/js/modules.js"></script>
+
+
+</body>
+
+</html>

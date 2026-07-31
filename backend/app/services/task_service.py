@@ -21,3 +21,6 @@ class TaskService:
 
     def delete_task(self, db_task):
         return self.repository.delete_task(db_task)
+    
+    def get_tasks_by_module(self, module_id: int):
+        return self.repository.get_tasks_by_module(module_id)

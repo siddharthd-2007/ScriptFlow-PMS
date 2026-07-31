@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Module Workspace | ScriptFlow PMS</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- =======================================
+            SIDEBAR
+    ======================================== -->
+
+        <div id="sidebar"></div>
+
+        <main class="main-wrapper">
+            <div class="page-content">
+
+
+                <!-- Topbar -->
+
+                <div id="topbar"></div>
+
+                <!-- Dashboard Container -->
+
+                <section class="dashboard-container">
+                    <!-- ======================================================
+    PROJECT HERO
+======================================================= -->
+
+                    <div class="project-workspace-header">
+
+                        <div class="row align-items-center g-4">
+
+                            <!-- Left Side -->
+
+                            <div class="col-lg-8">
+
+                                <!-- Breadcrumb -->
+
+                                <nav aria-label="breadcrumb">
+
+                                    <ol class="breadcrumb mb-3">
+
+                                        <li class="breadcrumb-item">
+
+                                            <a href="projects.html" class="text-decoration-none">
+
+                                                Projects
+
+                                            </a>
+
+                                        </li>
+
+                                        <li class="breadcrumb-item">
+
+                                            <span id="breadcrumbProject"></span>
+
+                                        </li>
+
+                                        <li class="breadcrumb-item active" aria-current="page">
+
+                                            <span id="breadcrumbModule"></span>
+
+                                        </li>
+
+                                    </ol>
+
+                                </nav>
+
+                                <!-- Project Name -->
+
+                                <h1 id="moduleName">
+                                    Loading Module...
+                                </h1>
+
+                                <p class="text-muted mb-2">
+
+                                    Parent Project:
+                                    <span id="parentProjectName"></span>
+
+                                </p>
+
+                                <p class="text-muted mb-4">
+
+                                    Manage modules, tasks, files, team members and overall project
+                                    progress from one central workspace.
+
+                                </p>
+
+                                <!-- Quick Project Details -->
+
+                                <div class="d-flex flex-wrap gap-3">
+
+                                    <span id="moduleStatus" class="badge rounded-pill bg-primary px-3 py-2">
+
+                                        In Progress
+
+                                    </span>
+
+                                    <span id="modulePriority" class="badge rounded-pill bg-warning text-dark px-3 py-2">
+
+                                        Medium Priority
+
+                                    </span>
+
+                                    <span class="badge rounded-pill bg-light text-dark px-3 py-2">
+
+                                        Progress :
+                                        <span id="moduleProgress">
+
+                                            0%
+
+                                        </span>
+
+                                    </span>
+
+                                    <span class="badge rounded-pill bg-light text-dark px-3 py-2">
+
+                                        Deadline :
+                                        <span id="moduleDeadline">
+
+                                            -
+
+                                        </span>
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Right Side -->
+
+                            <div class="col-lg-4">
+
+                                <div class="d-flex justify-content-lg-end justify-content-start flex-wrap gap-2">
+
+                                    <button id="editModuleBtn" class="btn btn-primary">
+
+                                        <i class="bi bi-pencil-square me-2"></i>
+
+                                        Edit Module
+
+                                    </button>
+
+                                    <button id="heroNewTaskBtn" class="btn btn-success">
+
+                                        <i class="bi bi-box-seam me-2"></i>
+
+                                        New Task
+
+                                    </button>
+
+                                    <a href="projects.html" id="backToProjectBtn" class="btn btn-outline-secondary">
+
+                                        <i class="bi bi-arrow-left me-2"></i>
+
+                                        Back
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================================
+    WORKSPACE NAVIGATION
+======================================================= -->
+
+                    <div class="workspace-tabs mt-4 mb-4">
+
+                        <button class="workspace-tab active" data-section="overview">
+
+                            <i class="bi bi-grid-1x2 me-2"></i>
+
+                            Overview
+
+                        </button>
+
+                        <button class="workspace-tab" data-section="tasks">
+
+                            <i class="bi bi-box-seam me-2"></i>
+
+                            Tasks
+
+                        </button>
+
+                        <button class="workspace-tab" data-section="team">
+
+                            <i class="bi bi-people me-2"></i>
+
+                            Team
+
+                        </button>
+
+                        <button class="workspace-tab" data-section="timeline">
+
+                            <i class="bi bi-calendar3 me-2"></i>
+
+                            Timeline
+
+                        </button>
+
+                        <button class="workspace-tab" data-section="files">
+
+                            <i class="bi bi-folder2-open me-2"></i>
+
+                            Files
+
+                        </button>
+
+                        <button class="workspace-tab" data-section="activity">
+
+                            <i class="bi bi-clock-history me-2"></i>
+
+                            Activity
+
+                        </button>
+
+                    </div>
+
+                    <!-- ======================================================
+    OVERVIEW SECTION
+======================================================= -->
+
+                    <div id="overviewSection">
+
+                        <div class="row g-4">
+
+                            <!-- ======================================================
+    LEFT COLUMN
+======================================================= -->
+
+                            <div class="col-xl-8">
+
+                                <!-- Module Dashboard -->
+
+                                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                                    <div class="card-body p-4">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                            <div>
+
+                                                <h4 class="fw-bold mb-1">
+
+                                                    Module Dashboard
+
+                                                </h4>
+
+                                                <p class="text-muted mb-0">
+
+                                                    Live overview of this module.
+
+                                                </p>
+
+                                            </div>
+
+                                            <span id="moduleStatusBadge"
+                                                class="badge bg-primary rounded-pill px-3 py-2">
+
+                                                Active
+
+                                            </span>
+
+                                        </div>
+
+                                        <!-- KPI Cards -->
+
+                                        <div class="row g-3">
+
+                                            <div class="col-md-3">
+
+                                                <div class="overview-card h-100">
+
+                                                    <div>
+
+                                                        <small class="text-muted">
+
+                                                            Progress
+
+                                                        </small>
+
+                                                        <h2 id="moduleProgressValue">
+
+                                                            0%
+
+                                                        </h2>
+
+                                                    </div>
+
+                                                    <div class="overview-icon bg-primary-soft">
+
+                                                        <i class="bi bi-graph-up-arrow"></i>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="col-md-3">
+
+                                                <div class="overview-card h-100">
+
+                                                    <div>
+
+                                                        <small class="text-muted">
+
+                                                            Tasks
+
+                                                        </small>
+
+                                                        <h2 id="totalTasks">
+
+                                                            0
+
+                                                        </h2>
+
+                                                    </div>
+
+                                                    <div class="overview-icon bg-warning-soft">
+
+                                                        <i class="bi bi-list-check"></i>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="overview-card h-100">
+
+                                                    <div>
+
+                                                        <small class="text-muted">
+
+                                                            Members
+
+                                                        </small>
+
+                                                        <h2 id="teamCount">
+
+                                                            0
+
+                                                        </h2>
+
+                                                    </div>
+
+                                                    <div class="overview-icon bg-danger-soft">
+
+                                                        <i class="bi bi-people-fill"></i>
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- About Module -->
+
+                                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                                    <div class="card-body p-4">
+
+                                        <h4 class="fw-bold mb-4">
+
+                                            About Module
+
+                                        </h4>
+
+                                        <p id="moduleDescription" class="text-muted mb-0">
+
+                                            No module description available.
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Recent Tasks -->
+
+                                <div class="card border-0 shadow-sm rounded-4">
+
+                                    <div class="card-body p-4">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                            <h4 class="fw-bold mb-0">
+
+                                                Recent Tasks
+
+                                            </h4>
+
+                                            <button class="btn btn-sm btn-primary" id="overviewNewTaskBtn">
+
+                                                <i class="bi bi-plus-lg me-1"></i>
+
+                                                New Task
+
+                                            </button>
+
+                                        </div>
+
+                                        <div id="recentModules">
+
+                                            <div class="text-center py-5 text-muted">
+
+                                                <i class="bi bi-box-seam display-6"></i>
+
+                                                <p class="mt-3 mb-0">
+
+                                                    No tasks created yet.
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- ======================================================
+    RIGHT SIDEBAR
+======================================================= -->
+
+                            <div class="col-xl-4">
+
+                                <!-- Module Information -->
+
+                                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                                    <div class="card-body p-4">
+
+                                        <h5 class="fw-bold mb-4">
+
+                                            Module Information
+
+                                        </h5>
+
+                                        <div class="mb-4">
+
+                                            <small class="text-muted d-block">
+
+                                                Client
+
+                                            </small>
+
+                                            <div id="projectClient" class="fw-semibold fs-6">
+
+                                                -
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mb-4">
+
+                                            <small class="text-muted d-block">
+
+                                                Project Manager
+
+                                            </small>
+
+                                            <div id="projectManager" class="fw-semibold fs-6">
+
+                                                -
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-6 mb-4">
+
+                                                <small class="text-muted d-block">
+
+                                                    Start Date
+
+                                                </small>
+
+                                                <div id="moduleStartDate">
+
+                                                    -
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-6 mb-4">
+
+                                                <small class="text-muted d-block">
+
+                                                    Deadline
+
+                                                </small>
+
+                                                <div id="moduleEndDate">
+
+                                                    -
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-6">
+
+                                                <small class="text-muted d-block">
+
+                                                    Priority
+
+                                                </small>
+
+                                                <div id="modulePriorityCard">
+
+                                                    -
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-6">
+
+                                                <small class="text-muted d-block">
+
+                                                    Completion
+
+                                                </small>
+
+                                                <div id="moduleCompletion">
+
+                                                    0%
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Progress Card -->
+
+                                <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                                    <div class="card-body p-4">
+
+                                        <div class="d-flex justify-content-between mb-3">
+
+                                            <h5 class="fw-bold mb-0">
+
+                                                Progress
+
+                                            </h5>
+
+                                            <span id="moduleProgressText">
+
+                                                0%
+
+                                            </span>
+
+                                        </div>
+
+                                        <div class="progress" style="height:10px;">
+
+                                            <div id="moduleProgressBar" class="progress-bar bg-primary"
+                                                style="width:0%">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Recent Activity -->
+
+                                <div class="card border-0 shadow-sm rounded-4">
+
+                                    <div class="card-body p-4">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                            <h5 class="fw-bold mb-0">
+
+                                                Recent Activity
+
+                                            </h5>
+
+                                            <i class="bi bi-clock-history"></i>
+
+                                        </div>
+
+                                        <div id="activityTimeline">
+
+                                            <div class="text-center text-muted py-5">
+
+                                                <i class="bi bi-clock-history display-6"></i>
+
+                                                <p class="mt-3 mb-0">
+
+                                                    No activity available.
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- ======================================================
+    MODULES SECTION
+======================================================= -->
+
+                    <div id="tasksSection" style="display:none;">
+
+                        <div class="card border-0 shadow-sm rounded-4">
+
+                            <div class="card-body p-4">
+
+                                <!-- Header -->
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+                                    <div>
+
+                                        <h3 class="fw-bold mb-1">
+                                            Tasks
+                                        </h3>
+
+                                        <p class="text-muted mb-0">
+                                            Manage all tasks inside this module.
+                                        </p>
+
+                                    </div>
+
+                                    <button class="btn btn-primary" id="tasksNewTaskBtn">
+
+                                        <i class="bi bi-plus-lg me-2"></i>
+
+                                        New Task
+
+                                    </button>
+
+                                </div>
+
+                                <!-- Search + Sort -->
+                                <div class="row g-3 mb-4">
+
+                                    <div class="col-lg-8">
+
+                                        <div class="input-group">
+
+                                            <span class="input-group-text">
+
+                                                <i class="bi bi-search"></i>
+
+                                            </span>
+
+                                            <input type="text" id="taskSearch" class="form-control"
+                                                placeholder="Search tasks...">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+
+                                        <select id="taskSort" class="form-select">
+
+                                            <option value="latest">Latest</option>
+                                            <option value="name">Name</option>
+                                            <option value="priority">Priority</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Tasks Grid -->
+
+                                <div class="row g-4" id="tasksGrid">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================================
+    TEAM SECTION
+======================================================= -->
+
+                    <div id="teamSection" style="display:none;">
+
+                        <div class="card border-0 shadow-sm rounded-4">
+
+                            <div class="card-body p-4">
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                    <div>
+
+                                        <h3 class="fw-bold mb-1">
+                                            Module Team
+                                        </h3>
+
+                                        <p class="text-muted mb-0">
+                                            Employees working on tasks in this module.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row g-4" id="moduleTeamGrid">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================================
+    TIMELINE SECTION
+======================================================= -->
+
+                    <div id="timelineSection" style="display:none;">
+
+                        <div class="workspace-card">
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                <div>
+
+                                    <h3 class="mb-1">Timeline</h3>
+
+                                    <p class="text-muted mb-0">
+                                        View the complete schedule of this module.
+                                    </p>
+
+                                </div>
+
+                                <select id="timelineFilter" class="form-select" style="max-width:220px;">
+
+                                    <option value="all">All Events</option>
+                                    <option value="upcoming">Upcoming</option>
+                                    <option value="today">Today</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="overdue">Overdue</option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Summary Cards -->
+
+                            <div class="row g-3 mb-4">
+
+                                <div class="col-lg-3 col-md-6">
+
+                                    <div class="dashboard-card">
+
+                                        <div class="dashboard-card-title">
+
+                                            Upcoming
+
+                                        </div>
+
+                                        <div class="dashboard-card-value" id="timelineUpcoming">
+
+                                            0
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 col-md-6">
+
+                                    <div class="dashboard-card">
+
+                                        <div class="dashboard-card-title">
+
+                                            Today
+
+                                        </div>
+
+                                        <div class="dashboard-card-value" id="timelineToday">
+
+                                            0
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 col-md-6">
+
+                                    <div class="dashboard-card">
+
+                                        <div class="dashboard-card-title">
+
+                                            Completed
+
+                                        </div>
+
+                                        <div class="dashboard-card-value" id="timelineCompleted">
+
+                                            0
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-3 col-md-6">
+
+                                    <div class="dashboard-card">
+
+                                        <div class="dashboard-card-title">
+
+                                            Overdue
+
+                                        </div>
+
+                                        <div class="dashboard-card-value" id="timelineOverdue">
+
+                                            0
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Timeline Events -->
+
+                            <div id="timelineContainer">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================================
+    FILES SECTION
+======================================================= -->
+
+                    <div id="filesSection" style="display:none;">
+
+                        <div class="card border-0 shadow-sm rounded-4">
+
+                            <div class="card-body p-4">
+
+                                <!-- Header -->
+
+                                <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+                                    <div>
+
+                                        <h3 class="fw-bold mb-1">
+                                            Files
+                                        </h3>
+
+                                        <p class="text-muted mb-0">
+                                            Upload and manage module documents.
+                                        </p>
+
+                                    </div>
+
+                                    <button id="uploadFileBtn" class="btn btn-primary">
+
+                                        <i class="bi bi-upload me-2"></i>
+
+                                        Upload File
+
+                                    </button>
+
+                                </div>
+
+                                <!-- Files Container -->
+
+                                <div id="filesContainer">
+
+                                    <div class="text-center py-5 text-muted">
+
+                                        <i class="bi bi-folder2-open display-5"></i>
+
+                                        <h5 class="mt-3">
+                                            No Files Uploaded
+                                        </h5>
+
+                                        <p class="mb-0">
+                                            Upload your first file for this module.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ======================================================
+    ACTIVITY
+======================================================= -->
+
+                    <section id="activitySection" style="display:none;">
+
+                        <div class="dashboard-card">
+
+                            <div class="card-header">
+
+                                <div>
+
+                                    <h5>Module Activity</h5>
+
+                                    <small>
+                                        Recent actions performed in this module
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <div class="card-body">
+
+                                <div id="activityContainer">
+
+                                    <div class="text-center py-5 text-muted">
+
+                                        <div class="spinner-border spinner-border-sm mb-3"></div>
+
+                                        <p class="mb-0">
+                                            Loading activity...
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================================
+    ACTIVITY SECTION
+======================================================= -->
+
+
+                </section>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ======================================================
+    EDIT MODULE MODAL
+======================================================= -->
+
+    <div class="modal fade" id="editModuleModal" tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        Edit Module
+                    </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="editModuleForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Module Name *
+                                </label>
+
+                                <input type="text" id="editModuleName" class="form-control" required>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label class="form-label">
+                                    Description
+                                </label>
+
+                                <textarea id="editModuleDescription" class="form-control" rows="4"></textarea>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Status
+                                </label>
+
+                                <select id="editModuleStatus" class="form-select">
+
+                                    <option>Planning</option>
+                                    <option>In Progress</option>
+                                    <option>Testing</option>
+                                    <option>Completed</option>
+                                    <option>On Hold</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Priority
+                                </label>
+
+                                <select id="editModulePriority" class="form-select">
+
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option>High</option>
+                                    <option>Critical</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Start Date
+                                </label>
+
+                                <input type="date" id="editModuleStartDate" class="form-control">
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    End Date
+                                </label>
+
+                                <input type="date" id="editModuleEndDate" class="form-control">
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Progress (%)
+                                </label>
+
+                                <input type="number" id="editModuleProgress" class="form-control" min="0" max="100">
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button type="button" class="btn btn-primary" id="saveModuleBtn">
+
+                        <i class="bi bi-check-lg me-2"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="taskModal" tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title" id="taskModalTitle">
+
+                        Create New Task
+
+                    </h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="taskForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">
+                                    Title *
+                                </label>
+
+                                <input id="taskTitle" class="form-control" required>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <label class="form-label">
+                                    Description
+                                </label>
+
+                                <textarea id="taskDescription" class="form-control"></textarea>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Module *
+                                </label>
+
+                                <select id="taskModule" class="form-select" required>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Assign To
+                                </label>
+
+                                <select id="taskAssignee" class="form-select">
+
+                                    <option value="">
+                                        Unassigned
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Priority
+                                </label>
+
+                                <select id="taskPriority" class="form-select">
+
+                                    <option>Low</option>
+                                    <option>Medium</option>
+                                    <option selected>High</option>
+                                    <option>Critical</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Status
+                                </label>
+
+                                <select id="taskStatus" class="form-select">
+
+                                    <option selected>
+                                        To Do
+                                    </option>
+
+                                    <option>
+                                        In Progress
+                                    </option>
+
+                                    <option>
+                                        Review
+                                    </option>
+
+                                    <option>
+                                        Completed
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Start Date
+                                </label>
+
+                                <input type="date" id="taskStartDate" class="form-control">
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Due Date
+                                </label>
+
+                                <input type="date" id="taskDueDate" class="form-control">
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Estimated Hours
+                                </label>
+
+                                <input type="number" id="taskEstimatedHours" class="form-control" value="0">
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button id="saveTaskBtn" class="btn btn-primary">
+
+                        <i class="bi bi-check-lg me-2"></i>
+
+                        Create Task
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <input type="file" id="fileInput" hidden>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../assets/js/api.js"></script>
+
+    <script src="../assets/components/sidebar.js"></script>
+
+    <script src="../assets/components/topbar.js"></script>
+
+    <script src="../assets/js/module-details.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            loadSidebar("projects.html");
+
+            loadTopbar({
+                page: "Module Workspace",
+                subtitle: "Manage modules, tasks, files and project progress",
+                showSearch: true,
+                searchPlaceholder: "Search tasks, files...",
+                showNewButton: false
+            });
+
+        });
+    </script>

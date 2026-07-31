@@ -1,6 +1,9 @@
 from sqlalchemy.orm import Session
 
 from app.models.user import User
+from app.models.task import Task
+from app.models.project_member import ProjectMember
+from app.models.project import Project
 
 
 class EmployeeRepository:
@@ -44,3 +47,35 @@ class EmployeeRepository:
         db.commit()
         db.refresh(employee)
         return employee
+
+    @staticmethod
+    def get_employee_tasks(
+        db: Session,
+        employee_id: int
+    ):
+        return (
+            db.query(Task)
+            .filter(
+                Task.assigned_to == employee_id,
+                Task.is_active == True
+            )
+            .all()
+        )
+
+    @staticmethod
+    def get_employee_projects(
+        db: Session,
+        employee_id: int
+    ):
+        return (
+            db.query(Project)
+            .join(
+                ProjectMember,
+                Project.id == ProjectMember.project_id
+            )
+            .filter(
+                ProjectMember.user_id == employee_id,
+                Project.is_active == True
+            )
+            .all()
+        )

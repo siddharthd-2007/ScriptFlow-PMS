@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Employee Workspace | ScriptFlow PMS</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <aside id="sidebar"></aside>
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Topbar -->
+        <header id="topbar"></header>
+
+        <section class="dashboard-container">
+
+            <!-- =======================================================
+                            HERO
+            ======================================================== -->
+
+            <div class="project-workspace-header">
+
+                <div class="row align-items-center g-4">
+
+                    <!-- Left -->
+
+                    <div class="col-lg-8">
+
+                        <!-- Breadcrumb -->
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb mb-3">
+
+                                <li class="breadcrumb-item">
+
+                                    <a href="employees.html">
+
+                                        Employees
+
+                                    </a>
+
+                                </li>
+
+                                <li class="breadcrumb-item active"
+                                    id="breadcrumbEmployee">
+
+                                    Loading...
+
+                                </li>
+
+                            </ol>
+
+                        </nav>
+
+                        <!-- Name -->
+
+                        <h1
+                            id="employeeName"
+                            class="fw-bold mb-2">
+
+                            Loading...
+
+                        </h1>
+
+                        <p
+                            id="employeeDesignation"
+                            class="text-muted mb-4">
+
+                            Loading...
+
+                        </p>
+
+                        <!-- Hero Badges -->
+
+                        <div
+                            class="d-flex flex-wrap gap-3">
+
+                            <span
+                                id="employeeStatusBadge"
+                                class="badge rounded-pill bg-primary px-3 py-2">
+
+                                Active
+
+                            </span>
+
+                            <span
+                                id="employeeDepartmentBadge"
+                                class="badge rounded-pill bg-info text-dark px-3 py-2">
+
+                                Department
+
+                            </span>
+
+                            <span
+                                class="badge rounded-pill bg-light text-dark px-3 py-2">
+
+                                Role :
+                                <span id="employeeRole">
+
+                                    -
+
+                                </span>
+
+                            </span>
+
+                            <span
+                                class="badge rounded-pill bg-light text-dark px-3 py-2">
+
+                                Joined :
+                                <span id="joiningDate">
+
+                                    -
+
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Right -->
+
+                    <div class="col-lg-4">
+
+                        <div
+                            class="d-flex justify-content-lg-end justify-content-start flex-wrap gap-2">
+
+                            <button
+                                id="editEmployeeBtn"
+                                class="btn btn-primary">
+
+                                <i class="bi bi-pencil-square me-2"></i>
+
+                                Edit Employee
+
+                            </button>
+
+                            <button
+                                id="assignTaskBtn"
+                                class="btn btn-success">
+
+                                <i class="bi bi-list-check me-2"></i>
+
+                                Assign Task
+
+                            </button>
+
+                            <a
+                                href="employees.html"
+                                class="btn btn-outline-secondary">
+
+                                <i class="bi bi-arrow-left me-2"></i>
+
+                                Back
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =======================================================
+                        WORKSPACE TABS
+            ======================================================== -->
+
+            <div class="workspace-tabs mt-4 mb-4">
+
+                <button
+                    class="workspace-tab active"
+                    data-section="overview">
+
+                    <i class="bi bi-grid-1x2 me-2"></i>
+
+                    Overview
+
+                </button>
+
+                <button
+                    class="workspace-tab"
+                    data-section="projects">
+
+                    <i class="bi bi-kanban me-2"></i>
+
+                    Projects
+
+                </button>
+
+                <button
+                    class="workspace-tab"
+                    data-section="tasks">
+
+                    <i class="bi bi-list-check me-2"></i>
+
+                    Tasks
+
+                </button>
+
+                <button
+                    class="workspace-tab"
+                    data-section="timelogs">
+
+                    <i class="bi bi-clock-history me-2"></i>
+
+                    Time Logs
+
+                </button>
+
+                <button
+                    class="workspace-tab"
+                    data-section="activity">
+
+                    <i class="bi bi-activity me-2"></i>
+
+                    Activity
+
+                </button>
+
+            </div>
+
+            <!-- =======================================================
+                        OVERVIEW SECTION
+            ======================================================== -->
+
+            <div id="overviewSection">
+
+                <div class="row g-4">
+
+                    <!-- LEFT -->
+
+                    <div class="col-xl-8">
+
+                        <!-- Dashboard -->
+
+                        <div class="card border-0 shadow-sm rounded-4 mb-4">
+
+                            <div class="card-body p-4">
+
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                    <div>
+
+                                        <h4 class="fw-bold mb-1">
+
+                                            Employee Dashboard
+
+                                        </h4>
+
+                                        <p class="text-muted mb-0">
+
+                                            Live overview of employee workload.
+
+                                        </p>
+
+                                    </div>
+
+                                    <span
+                                        id="employeeOverviewStatus"
+                                        class="badge rounded-pill bg-success">
+
+                                        Active
+
+                                    </span>
+
+                                </div>
+
+                                <div class="row g-3">
+
+                                    <div class="col-md-3">
+
+                                        <div class="overview-card">
+
+                                            <div>
+
+                                                <small class="text-muted">
+
+                                                    Projects
+
+                                                </small>
+
+                                                <h2 id="employeeProjectsCount">
+
+                                                    0
+
+                                                </h2>
+
+                                            </div>
+
+                                            <div class="overview-icon bg-primary-soft">
+
+                                                <i class="bi bi-kanban-fill"></i>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="overview-card">
+
+                                            <div>
+
+                                                <small class="text-muted">
+
+                                                    Tasks
+
+                                                </small>
+
+                                                <h2 id="employeeTasksCount">
+
+                                                    0
+
+                                                </h2>
+
+                                            </div>
+
+                                            <div class="overview-icon bg-success-soft">
+
+                                                <i class="bi bi-list-check"></i>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="overview-card">
+
+                                            <div>
+
+                                                <small class="text-muted">
+
+                                                    Hours
+
+                                                </small>
+
+                                                <h2 id="employeeHoursLogged">
+
+                                                    0
+
+                                                </h2>
+
+                                            </div>
+
+                                            <div class="overview-icon bg-warning-soft">
+
+                                                <i class="bi bi-clock-history"></i>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <div class="overview-card">
+
+                                            <div>
+
+                                                <small class="text-muted">
+
+                                                    Performance
+
+                                                </small>
+
+                                                <h2 id="employeePerformance">
+
+                                                    0%
+
+                                                </h2>
+
+                                            </div>
+
+                                            <div class="overview-icon bg-danger-soft">
+
+                                                <i class="bi bi-trophy-fill"></i>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- About Employee -->
+
+                        <div class="card border-0 shadow-sm rounded-4">
+
+                            <div class="card-body p-4">
+
+                                <h4 class="fw-bold mb-4">
+
+                                    About Employee
+
+                                </h4>
+
+                                <p
+                                    id="employeeBio"
+                                    class="text-muted">
+
+                                    No bio available.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT SIDEBAR -->
+
+                    <div class="col-xl-4">
+
+<!-- =======================================================
+                    EMPLOYEE INFORMATION
+======================================================= -->
+
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+
+    <div class="card-body p-4">
+
+        <h5 class="fw-bold mb-4">
+
+            Employee Information
+
+        </h5>
+
+        <div class="mb-4">
+
+            <small class="text-muted d-block">
+
+                Email
+
+            </small>
+
+            <div id="employeeEmail" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+
+            <small class="text-muted d-block">
+
+                Phone
+
+            </small>
+
+            <div id="employeePhone" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+
+            <small class="text-muted d-block">
+
+                Department
+
+            </small>
+
+            <div id="employeeDepartmentInfo" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+
+            <small class="text-muted d-block">
+
+                Role
+
+            </small>
+
+            <div id="employeeRoleInfo" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+        <div class="mb-4">
+
+            <small class="text-muted d-block">
+
+                Joining Date
+
+            </small>
+
+            <div id="employeeJoining" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <small class="text-muted d-block">
+
+                Status
+
+            </small>
+
+            <div id="employeeStatusInfo" class="fw-semibold">
+
+                -
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    PERFORMANCE
+======================================================= -->
+
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+
+    <div class="card-body p-4">
+
+        <div class="d-flex justify-content-between mb-3">
+
+            <h5 class="fw-bold mb-0">
+
+                Performance
+
+            </h5>
+
+            <span id="employeePerformanceText">
+
+                0%
+
+            </span>
+
+        </div>
+
+        <div class="progress" style="height:10px;">
+
+            <div
+                id="employeePerformanceBar"
+                class="progress-bar bg-primary"
+                style="width:0%;">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    RECENT ACTIVITY
+======================================================= -->
+
+<div class="card border-0 shadow-sm rounded-4">
+
+    <div class="card-body p-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h5 class="fw-bold mb-0">
+
+                Recent Activity
+
+            </h5>
+
+            <i class="bi bi-clock-history"></i>
+
+        </div>
+
+        <div id="activityTimeline">
+
+            <div class="text-center py-5 text-muted">
+
+                <i class="bi bi-clock-history display-6"></i>
+
+                <p class="mt-3 mb-0">
+
+                    No activity available.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =======================================================
+                    PROJECTS SECTION
+======================================================= -->
+
+<div
+    id="projectsSection"
+    style="display:none;">
+
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+
+                        Assigned Projects
+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+
+                        Projects assigned to this employee.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="row g-4"
+                id="employeeProjectsGrid">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    TASKS SECTION
+======================================================= -->
+
+<div
+    id="tasksSection"
+    style="display:none;">
+
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h3 class="fw-bold mb-1">
+
+                        Assigned Tasks
+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+
+                        Tasks currently assigned to this employee.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Task</th>
+                            <th>Project</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Due Date</th>
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="employeeTasksList">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    TIME LOGS
+======================================================= -->
+
+<div
+    id="timelogsSection"
+    style="display:none;">
+
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-5 text-center text-muted">
+
+            <i class="bi bi-clock-history display-5"></i>
+
+            <h5 class="mt-3">
+
+                Time Logs
+
+            </h5>
+
+            <p>
+
+                Time logging will be connected later.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    ACTIVITY
+======================================================= -->
+
+<div
+    id="activitySection"
+    style="display:none;">
+
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div
+            id="employeeActivityFeed"
+            class="card-body">
+
+            <div class="text-center py-5 text-muted">
+
+                <i class="bi bi-activity display-5"></i>
+
+                <h5 class="mt-3">
+
+                    No Activity Yet
+
+                </h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<!-- =======================================================
+                    EDIT EMPLOYEE MODAL
+======================================================= -->
+
+<div
+    class="modal fade"
+    id="editEmployeeModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    Edit Employee
+
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            id="editFullName"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <input
+                            id="editEmail"
+                            class="form-control"
+                            disabled>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Phone
+
+                        </label>
+
+                        <input
+                            id="editPhone"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Department
+
+                        </label>
+
+                        <input
+                            id="editDepartment"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Role
+
+                        </label>
+
+                        <select
+                            id="editRole"
+                            class="form-select">
+
+                            <option>Admin</option>
+                            <option>Manager</option>
+                            <option>Employee</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Designation
+
+                        </label>
+
+                        <input
+                            id="editDesignation"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Joining Date
+
+                        </label>
+
+                        <input
+                            id="editJoiningDate"
+                            type="date"
+                            class="form-control">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+
+                            Status
+
+                        </label>
+
+                        <select
+                            id="editStatus"
+                            class="form-select">
+
+                            <option value="true">
+
+                                Active
+
+                            </option>
+
+                            <option value="false">
+
+                                Inactive
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="saveEmployeeBtn"
+                    class="btn btn-primary">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =======================================================
+                    ASSIGN TASK MODAL
+======================================================= -->
+
+<div
+    class="modal fade"
+    id="assignTaskModal"
+    tabindex="-1">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    Assign Task
+
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <label class="form-label">
+
+                    Select Task
+
+                </label>
+
+                <select
+                    id="assignTaskSelect"
+                    class="form-select">
+
+                    <option value="">
+
+                        Loading tasks...
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="confirmAssignTaskBtn"
+                    class="btn btn-success">
+
+                    Assign Task
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Layout -->
+
+<script src="../assets/components/sidebar.js"></script>
+<script src="../assets/components/topbar.js"></script>
+
+<!-- API -->
+
+<script src="../assets/js/api.js"></script>
+
+<!-- Employee Details -->
+
+<script src="../assets/js/employee-details.js"></script>
+
+</body>
+
+</html>                        

@@ -9,7 +9,7 @@ class TaskBase(BaseModel):
     title: str
     description: Optional[str] = None
 
-    project_id: int
+    module_id: int
     assigned_to: Optional[int] = None
 
     priority: str
@@ -31,7 +31,7 @@ class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
 
-    project_id: Optional[int] = None
+    module_id: Optional[int] = None
     assigned_to: Optional[int] = None
 
     priority: Optional[str] = None

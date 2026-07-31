@@ -72,3 +72,24 @@ class EmployeeService:
             db,
             employee
         )
+        
+    @staticmethod
+    def get_employee_projects(
+        db: Session,
+        employee_id: int
+    ):
+        return EmployeeRepository.get_employee_projects(
+            db,
+            employee_id
+        )
+
+    @staticmethod
+    def get_employee_tasks(
+        db: Session,
+        employee_id: int
+    ):
+        return EmployeeRepository.get_employee_tasks(
+            db,
+            employee_id
+        )    
+        

@@ -1,6 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.schemas.project import ProjectResponse
+
+from app.schemas.task import TaskResponse
 from app.database.connection import get_db
 
 from app.schemas.employee import (
@@ -55,6 +58,57 @@ def get_employee(
 
     return employee
 
+@router.get(
+    "/{employee_id}/projects",
+    response_model=list[ProjectResponse]
+)
+def get_employee_projects(
+    employee_id: int,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_employee)
+):
+
+    employee = EmployeeService.get_by_id(
+        db,
+        employee_id
+    )
+
+    if employee is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Employee not found"
+        )
+
+    return EmployeeService.get_employee_projects(
+        db,
+        employee_id
+    )
+    
+@router.get(
+    "/{employee_id}/tasks",
+    response_model=list[TaskResponse]
+)
+def get_employee_tasks(
+    employee_id: int,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_employee)
+):
+
+    employee = EmployeeService.get_by_id(
+        db,
+        employee_id
+    )
+
+    if employee is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Employee not found"
+        )
+
+    return EmployeeService.get_employee_tasks(
+        db,
+        employee_id
+    )    
 
 @router.post(
     "/",
