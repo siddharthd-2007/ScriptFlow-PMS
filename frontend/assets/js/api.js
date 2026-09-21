@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://project-management-api.vercel.app";
+const API_BASE_URL = "https://script-flow-pms.vercel.app";
 
 async function apiRequest(endpoint, method = "GET", body = null) {
 
