@@ -27,10 +27,7 @@ if DATABASE_URL.startswith("postgresql://"):
 
 engine = create_engine(
     DATABASE_URL,
-    echo=True,
-    connect_args={
-        "options": "-csearch_path=public"
-    }
+    echo=True
 )
 
 SessionLocal = sessionmaker(
