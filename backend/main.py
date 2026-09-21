@@ -25,16 +25,15 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Create the FastAPI application
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://127.0.0.1:5500",
-        "http://localhost:5500"
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(module_router)
 app.include_router(auth_router)
 app.include_router(employee_router)
