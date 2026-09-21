@@ -84,8 +84,7 @@ loginForm.addEventListener("submit", async (event) => {
     try {
 
         const response = await fetch(
-
-            "http://127.0.0.1:8000/auth/login",
+    "https://script-flow-pms.vercel.app/auth/login",
 
             {
 
